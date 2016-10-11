@@ -1,0 +1,15 @@
+// Place all the styles related to the tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tasks-template {
+  padding: 70px 15px;
+}
+
+.form-group.required .control-label:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 8px;
+  top:7px;
+}

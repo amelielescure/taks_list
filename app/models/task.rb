@@ -15,4 +15,14 @@ class Task < ActiveRecord::Base
   has_many :tags, through: :taggings
 
   validates :title, presence: true
+
+  def task_tags=(names)
+    self.tags = names.split(",").map do |name|
+      Tag.find_or_create_by(name: name.strip)
+    end
+  end
+
+  def task_tags
+    self.tags.map(&:name).join(", ")
+  end
 end

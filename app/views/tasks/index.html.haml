@@ -4,26 +4,19 @@
 
   - if @tasks.length > 0
     .tags_filter
-      %strong Filtrer par tags:
-      =select_tag :tags_filter, options_from_collection_for_select(@tags, "id", "name"), class: 'select2 col-sm-5', multiple: "multiple"
-      %a.btn.btn-default
-        %i.glyphicon.glyphicon-search
-    %table.table.table-striped
-      %thead
-        %tr
-          %th Titre
-          %th Tags
-          %th{ colspan: '2' }
-      %tbody
-        - @tasks.each do |task|
-          %tr{id: "task-#{task.id}"}
-            %td= link_to task.title, task
-            %td= raw task.task_tags
-            %td.js-datapicker_block
-              %button.btn.btn-default.js-postpone{'data-id' => task.id } Remettre à plus tard
-            %td= link_to 'X', task_path(task), class: "btn btn-danger",  method: :delete, remote: true
+      =form_tag(tasks_path, method: 'get', remote: true) do
+        %strong Filtrer par tags:
+        =select_tag :tags_filter, options_from_collection_for_select(@tags, "name", "name"), class: 'select2 col-sm-2 js-select-tags', name: 'tags'
+        %button.btn.btn-default{type: 'submit'}
+          %i.glyphicon.glyphicon-search
+
+    #lists
+      = render 'tasks_list'
   - else
     .alert.alert-warning{ role: "alert" } Aucune tâches ajoutées
   %br/
 
   = link_to 'Nouvelle tâche', new_task_path, class: 'btn btn-primary'
+
+:javascript
+  $('.select2').select2()

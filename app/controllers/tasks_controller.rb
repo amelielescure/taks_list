@@ -2,8 +2,12 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :postpone]
 
   def index
-    @tasks = Task.where('postpone_date <= ?', DateTime.now)
     @tags = Tag.all
+    if params[:tags].present?
+      @tasks = Task.filter_by_tag(params[:tags])
+    else
+      @tasks = Task.postpone_date_current
+    end
   end
 
   def show

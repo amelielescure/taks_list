@@ -1,7 +1,4 @@
 class Tasks
-  constructor: () ->
-    $('.select2').select2()
-
   showDatePicker: (task_id) ->
     AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
     $('#task-' + task_id + ' .js-datapicker_block').html('<div class="row">' +
@@ -11,7 +8,7 @@ class Tasks
           '</div>' +
           '<div class="col-sm-4">' +
             '<input class="btn btn-success" type="submit" value="OK">' +
-            '<button class="btn btn-default js-close-postpone" data-id="' + task_id + '">X</button>' +
+            '<a class="btn btn-default js-close-postpone" data-id="' + task_id + '">X</a>' +
           '</div>' +
         '</div>' +
       '</form>')

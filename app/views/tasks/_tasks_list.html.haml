@@ -1,0 +1,14 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Titre
+      %th Tags
+      %th{ colspan: '2' }
+  %tbody
+    - @tasks.each do |task|
+      %tr{id: "task-#{task.id}"}
+        %td= link_to task.title, task
+        %td= raw task.task_tags
+        %td.js-datapicker_block
+          %button.btn.btn-default.js-postpone{'data-id' => task.id } Remettre à plus tard
+        %td= link_to 'Terminé', task_path(task), class: "btn btn-success",  method: :delete, remote: true

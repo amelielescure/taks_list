@@ -7,6 +7,7 @@
       %ul
         - @task.errors.full_messages.each do |message|
           %li= message
+  =f.hidden_field :postpone_date, value: @task.postpone_date || DateTime.now
   .form-group.required
     = f.label 'Titre', class: 'col-sm-2 control-label'
     .col-sm-10

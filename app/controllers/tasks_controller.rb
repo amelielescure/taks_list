@@ -1,8 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :postpone]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.where('postpone_date <= ?', DateTime.now)
+    @tags = Tag.all
   end
 
   def show
@@ -26,13 +27,19 @@ class TasksController < ApplicationController
   end
 
   def update
+    if @task.update(task_params)
+      redirect_to tasks_path, notice: 'Tâche bien modifiée.'
+    else
+      render :edit
+    end
   end
 
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.js
-    end
+  end
+
+  def postpone
+    @task.update(task_params)
   end
 
   private
@@ -43,6 +50,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:title, :description, :visible_date, :task_tags)
+      params.require(:task).permit(:title, :description, :postpone_date, :task_tags)
     end
 end

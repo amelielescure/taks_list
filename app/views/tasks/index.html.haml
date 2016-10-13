@@ -3,6 +3,11 @@
     %p.alert.alert-success= notice
 
   - if @tasks.length > 0
+    .tags_filter
+      %strong Filtrer par tags:
+      =select_tag :tags_filter, options_from_collection_for_select(@tags, "id", "name"), class: 'select2 col-sm-5', multiple: "multiple"
+      %a.btn.btn-default
+        %i.glyphicon.glyphicon-search
     %table.table.table-striped
       %thead
         %tr

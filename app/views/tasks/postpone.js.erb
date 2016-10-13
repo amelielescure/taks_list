@@ -1,0 +1,3 @@
+<% if @task.postpone_date > Time.now %>
+  $("#task-<%= @task.id %>").remove()
+<% end %>

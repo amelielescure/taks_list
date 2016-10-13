@@ -1,2 +1,4 @@
-%h1 Tasks#edit
-%p Find me in app/views/tasks/edit.html.erb
+%h1 Modification d'une tâche
+= render 'form'
+
+= link_to 'Retour à la liste', tasks_path, class: 'btn btn-default pull-right'

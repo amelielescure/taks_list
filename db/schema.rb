@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161013181503) do
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "postpone_date", default: '2016-10-13 18:15:25'
+    t.datetime "postpone_date", default: '2016-10-13 19:04:09'
     t.datetime "created_at"
     t.datetime "updated_at"
   end

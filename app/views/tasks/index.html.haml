@@ -5,7 +5,7 @@
   - if @tasks.length > 0
     .tags_filter
       =form_tag(tasks_path, method: 'get', remote: true) do
-        %strong Filtrer par tags:
+        %strong Filtrer par tag:
         =select_tag :tags_filter, options_from_collection_for_select(@tags, "name", "name"), class: 'select2 col-sm-2 js-select-tags', name: 'tags'
         %button.btn.btn-default{type: 'submit'}
           %i.glyphicon.glyphicon-search

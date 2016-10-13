@@ -36,9 +36,17 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
-	gem 'annotate'
+group :test, :development do
+  gem 'annotate'
   gem 'pry'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', require: false
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
 end
 
 # Use ActiveModel has_secure_password

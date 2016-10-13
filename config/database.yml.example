@@ -1,0 +1,18 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: tasks_list_dev
+  username: username
+  password: password
+  host: localhost
+  pool: 5
+
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: tasks_list_test
+  username: username
+  password: password
+  host: localhost
+  pool: 5

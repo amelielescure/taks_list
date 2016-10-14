@@ -3,10 +3,11 @@ class TasksController < ApplicationController
 
   def index
     @tags = Tag.all
+
     if params[:tags].present?
       @tasks = Task.filter_by_tag(params[:tags])
     else
-      @tasks = Task.postpone_date_current
+      @tasks = Task.postpone_date_lower_date
     end
   end
 
@@ -24,7 +25,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to tasks_path, notice: 'Tâche bien crée.'
+      redirect_to tasks_path, notice: 'Tâche bien créée.'
     else
       render :new
     end

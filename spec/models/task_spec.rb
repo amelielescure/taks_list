@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id            :integer          not null, primary key
+#  title         :string
+#  description   :text
+#  postpone_date :datetime
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 require "rails_helper"
 
 RSpec.describe Task, :type => :model do

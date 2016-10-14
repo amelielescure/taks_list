@@ -6,17 +6,17 @@
     .tags_filter
       =form_tag(tasks_path, method: 'get', remote: true) do
         %strong Filtrer par tag:
-        =select_tag :tags_filter, options_from_collection_for_select(@tags, "name", "name"), class: 'select2 col-sm-2 js-select-tags', name: 'tags'
+        =select_tag :tags_filter, options_from_collection_for_select(@tags, 'name', 'name'), class: 'select2 col-sm-2 js-select-tags', name: 'tags', multiple: 'multiple'
         %button.btn.btn-default{type: 'submit'}
           %i.glyphicon.glyphicon-search
 
     #lists
       = render 'tasks_list'
   - else
-    .alert.alert-warning{ role: "alert" } Aucune tâches ajoutées
+    .alert.alert-warning{ role: 'alert' } Aucune tâches ajoutées
   %br/
 
   = link_to 'Nouvelle tâche', new_task_path, class: 'btn btn-primary'
 
 :javascript
-  $('.select2').select2()
+  $('.select2').select2({ maximumSelectionLength: 1 })

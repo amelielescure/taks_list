@@ -19,12 +19,12 @@ class Tasks
   hideDatePicker: (task_id) ->
     $('#task-' + task_id + ' .js-datapicker_block').html('<button class="btn btn-default js-postpone" data-id="' + task_id + '">Remettre à plus tard</button>')
 
-$ ->
+$(document).on 'ready page:load', ->
   tasks = new Tasks
 
-  $('#tasks_list').on 'click', '.js-postpone', (e) ->
+  $(document).on 'click', '.js-postpone', (e) ->
     tasks.showDatePicker( $(e.currentTarget).data('id') )
 
-  $('#tasks_list').on 'click', '.js-close-postpone', (e) ->
+  $(document).on 'click', '.js-close-postpone', (e) ->
     tasks.hideDatePicker( $(e.currentTarget).data('id') )
 
